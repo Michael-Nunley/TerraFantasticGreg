@@ -200,6 +200,9 @@ const registerAdAstraBlockTags = (event) => {
 	event.add('ad_astra:moon_stone_replaceables', 'tfc:rock/gravel/rhyolite')
 	event.add('ad_astra:moon_stone_replaceables', 'tfc:rock/gravel/andesite')
 	event.add('ad_astra:moon_stone_replaceables', 'tfc:rock/gravel/dacite')
+	event.add('ad_astra:moon_stone_replaceables', 'tfg:rock/gravel_moon')
+	event.add('ad_astra:moon_stone_replaceables', 'tfg:rock/gravel_moon_deepslate')
+	event.add('ad_astra:moon_stone_replaceables', 'tfg:rock/gravel_glacio')
 	event.add('ad_astra:moon_stone_replaceables', 'tfg:rock/hardened_moon_deepslate')
 	event.add('ad_astra:moon_stone_replaceables', 'ad_astra:glacio_stone')
 	event.add('ad_astra:moon_stone_replaceables', 'tfg:rock/hardened_glacio_stone')
@@ -253,9 +256,13 @@ const registerAdAstraBlockTags = (event) => {
 	event.add('ad_astra:mars_stone_replaceables', 'tfg:rock/hardened_red_granite')
 	event.add('ad_astra:mars_stone_replaceables', 'minecraft:dripstone_block')
 	event.add('ad_astra:mars_stone_replaceables', 'tfg:rock/hardened_dripstone')
+	event.add('ad_astra:mars_stone_replaceables', 'tfg:rock/gravel_venus')
+	event.add('ad_astra:mars_stone_replaceables', 'tfg:rock/gravel_mars')
 	event.add('tfg:mars_soil', 'minecraft:red_sand')
 	event.add('tfg:mars_soil', 'ad_astra:mars_sand')
 	event.add('tfg:mars_soil', 'ad_astra:venus_sand')
+	event.add('tfg:mars_soil', 'tfg:rock/gravel_venus')
+	event.add('tfg:mars_soil', 'tfg:rock/gravel_mars')
 	event.add('tfg:mars_soil', 'tfc:sand/black')
 	event.add('tfg:mars_soil', 'tfc:sand/red')
 	event.add('tfg:mars_soil', 'tfc:sand/pink')
@@ -274,6 +281,7 @@ const registerAdAstraBlockTags = (event) => {
 	event.add('minecraft:animals_spawnable_on', '#tfg:mars_soil')
 	event.add('minecraft:animals_spawnable_on', '#tfg:mars_plants')
 	event.add('minecraft:animals_spawnable_on', '#forge:gravel')
+	event.add('minecraft:valid_spawn', '#minecraft:animals_spawnable_on')
 	
 	event.add('tfc:can_carve', '#ad_astra:moon_stone_replaceables')
 	event.add('tfc:can_carve', '#ad_astra:mars_stone_replaceables')
@@ -372,6 +380,7 @@ const registerAdAstraBiomeTags = (event) => {
 
 	event.add('tfg:has_dark_sand_particles', 'tfg:mars/martian_dunes')
 	event.add('tfg:has_dark_sand_particles', 'tfg:mars/martian_deep_desert')
+	event.add('tfg:has_dark_sand_particles', 'tfg:mars/martian_mountains')
 	event.add('tfg:has_medium_sand_particles', 'tfg:mars/amber_plains')
 	event.add('tfg:has_medium_sand_particles', 'tfg:mars/amber_hills')
 	event.add('tfg:has_medium_sand_particles', 'tfg:mars/rusticus_plains')
@@ -382,7 +391,6 @@ const registerAdAstraBiomeTags = (event) => {
 	event.add('tfg:has_light_sand_particles', 'tfg:mars/amber_edge')
 	event.add('tfg:has_light_sand_particles', 'tfg:mars/rusticus_edge')
 	event.add('tfg:has_light_sand_particles', 'tfg:mars/sangnum_edge')
-	event.add('tfg:has_light_sand_particles', 'tfg:mars/martian_mountains')
 	event.add('tfg:has_light_sand_particles', 'tfg:mars/martian_river')
 }
 
@@ -481,14 +489,21 @@ const registerAdAstraPlacedFeatures = (event) => {
 	//#region Mars
 
 	// Underground decoration
-	event.add('tfg:mars_underground_decoration', 'tfg:mars/underground/cave_column')
-	event.add('tfg:mars_underground_decoration', 'tfg:mars/underground/cave_spike')
-	event.add('tfg:mars_underground_decoration', 'tfg:mars/underground/large_cave_spike')
+	//event.add('tfg:mars_underground_decoration', 'tfg:mars/underground/cave_column')
+	//event.add('tfg:mars_underground_decoration', 'tfg:mars/underground/cave_spike')
+	//event.add('tfg:mars_underground_decoration', 'tfg:mars/underground/large_cave_spike')
+	event.add('tfg:mars_underground_decoration', 'tfg:mars/underground/ice_cave')
+
+	event.add('tfg:mars_underground_decoration', 'tfc:cave_spike')
+	event.add('tfg:mars_underground_decoration', 'tfc:cave_column')
+	event.add('tfg:mars_underground_decoration', 'tfc:large_cave_spike')
+
 	event.add('tfg:mars_underground_decoration', 'tfg:mars/underground/calcite')
 	event.add('tfg:mars_underground_decoration', 'tfg:mars/underground/mega_calcite')
-	event.add('tfg:mars_underground_decoration', 'tfc:icicle')
+	event.add('tfg:mars_underground_decoration', 'tfc:mars/underground/icicle')
 	event.add('tfg:mars_underground_decoration', 'tfg:mars/underground/loose_rocks')
 	event.add('tfg:mars_underground_decoration', 'tfg:mars/underground/ochrum_blob')
+
 	event.add('tfg:mars_underground_decoration', "tfg:earth/geode/amethyst")
 	event.add('tfg:mars_underground_decoration', "tfg:earth/geode/barite")
 	event.add('tfg:mars_underground_decoration', "tfg:earth/geode/calcite")
@@ -499,7 +514,9 @@ const registerAdAstraPlacedFeatures = (event) => {
 	
 	// Vegetation
 	event.add("tfg:mars_global_small_plants", "tfg:mars/tree/lucernia")
+	event.add("tfg:mars_global_small_plants", "tfg:mars/tree/lucernia_common")
 	event.add("tfg:mars_global_small_plants", "tfg:mars/tree/cave_bush")
+	event.add("tfg:mars_global_small_plants", "tfg:mars/tree/cave_bush_common")
 	event.add("tfg:mars_global_small_plants", "tfg:mars/surface/charnia")
 	event.add("tfg:mars_global_small_plants", "tfg:mars/surface/flamaea")
 	event.add("tfg:mars_global_small_plants", "tfg:mars/surface/lacugrove")
@@ -540,8 +557,6 @@ const registerAdAstraPlacedFeatures = (event) => {
 	event.add("tfg:mars_rusticus_vegetal_decoration", "tfg:mars/surface/bulb_moss")
 	event.add("tfg:mars_rusticus_vegetal_decoration", "tfg:mars/surface/aurant_polypore")
 	event.add("tfg:mars_rusticus_vegetal_decoration", "tfg:mars/surface/purple_polypore")
-	event.add("tfg:mars_rusticus_vegetal_decoration", "tfg:mars/surface/filalux_wings")
-	event.add("tfg:mars_rusticus_vegetal_decoration", "tfg:mars/surface/filalux_wings_top")
 
 	event.add("tfg:mars_rusticus_vegetal_decoration", "tfg:mars/surface/aeridium")
 	event.add("tfg:mars_rusticus_vegetal_decoration", "tfg:mars/surface/flammalix")
@@ -560,8 +575,9 @@ const registerAdAstraPlacedFeatures = (event) => {
 	event.add("tfg:mars_sangnum_vegetal_decoration", "tfg:mars/surface/small_amaranita_mushroom")
 	event.add("tfg:mars_sangnum_vegetal_decoration", "tfg:mars/surface/large_amaranita_mushroom")
 	
-	event.add("tfg:mars_sangnum_vegetal_decoration", "tfg:mars/surface/aurant_polypore")
 	event.add("tfg:mars_sangnum_vegetal_decoration", "tfg:mars/surface/purple_polypore")
+	event.add("tfg:mars_sangnum_vegetal_decoration", "tfg:mars/surface/filalux_wings")
+	event.add("tfg:mars_sangnum_vegetal_decoration", "tfg:mars/surface/filalux_wings_top")
 
 	event.add("tfg:mars_sangnum_vegetal_decoration", "tfg:mars/surface/cave_grass")
 	event.add("tfg:mars_sangnum_vegetal_decoration", "tfg:mars/surface/clawfern")
