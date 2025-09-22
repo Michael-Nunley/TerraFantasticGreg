@@ -1,5 +1,5 @@
 {
-	"feature": "tfc:icicle",
+	"feature": "tfg:mars/underground/icicle",
 	"placement": [
 		{
 			"type": "minecraft:count",
@@ -13,10 +13,10 @@
 			"height": {
 				"type": "biased_to_bottom",
 				"min_inclusive": {
-					"absolute": 0
+					"absolute": -20
 				},
 				"max_inclusive": {
-					"absolute": 150
+					"absolute": 100
 				}
 			}
 		},

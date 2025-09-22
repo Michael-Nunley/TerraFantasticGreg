@@ -4,6 +4,7 @@ const registerTFGItemTags = (event) => {
 
 	registerTFGTrimTags(event)
 	registerFacadeWhitelistTags(event)
+	registerBlockInteractionTags(event)
 	//crop stuff
 	event.add('tfc:seeds', 'tfg:sunflower_seeds')
 	event.add('tfc:seeds', 'tfg:rapeseed_seeds')
@@ -290,11 +291,14 @@ const registerTFGItemTags = (event) => {
 	event.add('tfg:foods/usable_in_meal_bag', '#tfc:foods/vegetables');
 	event.add('tfg:foods/usable_in_meal_bag', '#tfc:foods/fruits');
 	event.add('tfg:foods/usable_in_meal_bag', '#tfc:foods/dairy');
+    event.add('tfg:foods/usable_in_meal_bag', '#firmalife:foods/chocolate');
 	event.add('tfg:foods/usable_in_meal_bag', 'tfc:food/cooked_egg');
 	event.add('tfg:foods/usable_in_meal_bag', 'tfc:food/boiled_egg');
     event.add('tfg:foods/usable_in_meal_bag', 'tfc:food/cooked_rice');
     event.add('tfg:foods/usable_in_meal_bag', 'firmalife:food/cooked_pasta');
     event.add('tfg:foods/usable_in_meal_bag', 'firmalife:food/pasta_with_tomato_sauce');
+    event.add('tfg:foods/usable_in_meal_bag', 'firmalife:food/cooked_rice_noodles');
+    event.add('tfg:foods/usable_in_meal_bag', 'tfg:roasted_sunflower_seeds');
 	//#endregion
 
 	//#region Blacklisted from the railgun
@@ -329,6 +333,32 @@ const registerTFGItemTags = (event) => {
 	event.add('tfg:cannot_launch_in_railgun', 'create:cardboard_package_12x12')
 	event.add('tfg:cannot_launch_in_railgun', 'create_factory_logistics:composite_package')
 	event.add('tfg:cannot_launch_in_railgun', 'create_factory_logistics:copper_jar_package_8x8')
+	event.add('tfg:cannot_launch_in_railgun', 'sns:ore_sack')
+	event.add('tfg:cannot_launch_in_railgun', 'sns:leather_sack')
+	event.add('tfg:cannot_launch_in_railgun', 'sns:burlap_sack')
+	event.add('tfg:cannot_launch_in_railgun', 'sns:seed_pouch')
+	event.add('tfg:cannot_launch_in_railgun', 'sns:straw_basket')
+	event.add('tfg:cannot_launch_in_railgun', 'sns:frame_pack')
+	event.add('tfg:cannot_launch_in_railgun', 'sophisticatedbackpacks:backpack')
+	event.add('tfg:cannot_launch_in_railgun', 'sophisticatedbackpacks:copper_backpack')
+	event.add('tfg:cannot_launch_in_railgun', 'sophisticatedbackpacks:iron_backpack')
+	event.add('tfg:cannot_launch_in_railgun', 'sophisticatedbackpacks:gold_backpack')
+	event.add('tfg:cannot_launch_in_railgun', 'sophisticatedbackpacks:diamond_backpack')
+	event.add('tfg:cannot_launch_in_railgun', 'sophisticatedbackpacks:netherite_backpack')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:wood_crate')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:bronze_crate')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:black_bronze_crate')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:bismuth_bronze_crate')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:steel_crate')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:aluminium_crate')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:stainless_steel_crate')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:titanium_crate')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:tungsten_steel_crate')
+	event.add('tfg:cannot_launch_in_railgun', '#create:toolboxes')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:lv_super_chest')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:mv_super_chest')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:hv_super_chest')
+	event.add('tfg:cannot_launch_in_railgun', 'gtceu:ev_super_chest')
 	//#endregion
 
 	const SHAPES =    ['stairs', 'slab', 'wall']
@@ -994,8 +1024,10 @@ const registerTFGBlockTags = (event) => {
 	event.add('tfg:decorative_plant_attachable', '#minecraft:logs')
 	event.add('tfg:decorative_plant_attachable', 'minecraft:mushroom_stem')
 	event.add('tfg:decorative_plant_attachable', 'species:alphacene_mushroom_block')
+	event.add('tfg:decorative_plant_attachable', 'species:alphacene_moss_block')
 	event.add('tfg:decorative_plant_attachable', 'ad_astra:aeronos_cap')
 	event.add('tfg:decorative_plant_attachable', 'ad_astra:strophar_cap')
+	event.add('tfg:decorative_plant_attachable', 'tfg:glacian_leaves')
 	event.add('tfg:decorative_plant_attachable', 'minecraft:nether_wart_block')
 	event.add('tfg:decorative_plant_attachable', 'minecraft:warped_wart_block')
 	event.add('tfg:decorative_plant_attachable', 'betterend:cave_bush')
