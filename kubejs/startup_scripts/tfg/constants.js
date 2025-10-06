@@ -113,7 +113,8 @@ global.TFG_MACHINE_CASINGS = [
 	'machine_casing_blue_solar_panel',
 	'machine_casing_green_solar_panel',
 	'machine_casing_red_solar_panel',
-	'machine_casing_mars'
+	'machine_casing_mars',
+	'machine_casing_ostrum_carbon'
 ];
 
 /**
@@ -167,81 +168,115 @@ global.FOOD_FRUIT = [
 	{name: 'shadow_berry', id: 'betterend:shadow_berry_cooked', saturation: 1, water: 5, fruit: 1.5, decay: 2 }
 ];
 
+
+global.STONE_CHARACS = { // Sets of stone block properties used for block registry.
+	deepslate:      { sound: 'deepslate',       type: "metamorphic",       mapColor: 'terracotta_grey'       },
+	blackstone:     { sound: 'deepslate',       type: "igneous_intrusive", mapColor: 'color_black'           },
+	dripstone:      { sound: 'dripstone_block', type: "sedimentary",       mapColor: 'terracotta'            },
+	crackrack:      { sound: 'netherrack',      type: "igneous_intrusive", mapColor: 'crimson_stem'          },
+	nether:         { sound: 'nether_bricks',   type: "igneous_intrusive", mapColor: 'nether'                },
+	moon:           { sound: 'stone',           type: "igneous_intrusive", mapColor: 'terracotta_cyan'       },
+	moon_deepslate: { sound: 'deepslate',       type: "igneous_intrusive", mapColor: 'terracotta_blue'       },
+	mars:           { sound: 'stone',           type: "sedimentary",       mapColor: 'terracotta_orange'     },
+	venus:          { sound: 'stone',           type: "igneous_extrusive", mapColor: 'terracotta_yellow'     },
+	mercury:        { sound: 'stone',           type: "igneous_intrusive", mapColor: 'terracotta_purple'     },
+	glacio:         { sound: 'stone',           type: "igneous_extrusive", mapColor: 'terracotta_light_blue' },
+	permafrost:     { sound: 'stone',           type: null,                mapColor: 'snow'                  },
+	red_granite:    { sound: 'stone',           type: "igneous_intrusive", mapColor: 'terracotta_red'        },
+	reconstituted:  { sound: 'stone',           type: null,                mapColor: 'stone'                 },
+	light_concrete: { sound: 'stone',           type: null,                mapColor: 'color_light_gray'      },
+	dark_concrete:  { sound: 'stone',           type: null,                mapColor: 'color_gray'            }
+}
+
+
 /** @type {Hammering[]} */
-global.HAMMERING = [
+global.HAMMERING = [ // Crushing relationships for manual block hammering, create press hammering and gtceu forge hammer crushing.
 		// Beneath
-		{ raw: 'minecraft:deepslate', hammered: 'minecraft:cobbled_deepslate', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/hardened_deepslate', hammered: 'minecraft:cobbled_deepslate', duration: 10, eu: 16 },
-		{ raw: 'minecraft:cobbled_deepslate', hammered: 'tfg:rock/gravel_deepslate', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_deepslate', hammered: 'tfc:sand/black', duration: 70, eu: 2 },
+		{ raw: 'minecraft:deepslate',                  hammered: 'minecraft:cobbled_deepslate',    duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/hardened_deepslate',          hammered: 'minecraft:cobbled_deepslate',    duration: 10, eu: 16 },
+		{ raw: 'minecraft:cobbled_deepslate',          hammered: 'tfg:rock/gravel_deepslate',      duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/mossy_cobble_deepslate',      hammered: 'tfg:rock/gravel_deepslate',      duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_deepslate',            hammered: 'tfc:sand/black',                 duration: 70, eu: 2  },
 
-		{ raw: 'minecraft:blackstone', hammered: 'tfg:rock/cobble_blackstone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/hardened_blackstone', hammered: 'tfg:rock/cobble_blackstone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/cobble_blackstone', hammered: 'tfg:rock/gravel_blackstone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_blackstone', hammered: 'tfc:sand/black', duration: 70, eu: 2 },
+		{ raw: 'minecraft:blackstone',                 hammered: 'tfg:rock/cobble_blackstone',     duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/hardened_blackstone',         hammered: 'tfg:rock/cobble_blackstone',     duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/cobble_blackstone',           hammered: 'tfg:rock/gravel_blackstone',     duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/mossy_cobble_blackstone',     hammered: 'tfg:rock/gravel_blackstone',     duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_blackstone',           hammered: 'tfc:sand/black',                 duration: 70, eu: 2  },
 
-		{ raw: 'minecraft:dripstone_block', hammered: 'tfg:rock/cobble_dripstone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/hardened_dripstone', hammered: 'tfg:rock/cobble_dripstone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/cobble_dripstone', hammered: 'tfg:rock/gravel_dripstone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_dripstone', hammered: 'tfc:sand/brown', duration: 70, eu: 2 },
+		{ raw: 'minecraft:dripstone_block',            hammered: 'tfg:rock/cobble_dripstone',      duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/hardened_dripstone',          hammered: 'tfg:rock/cobble_dripstone',      duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/cobble_dripstone',            hammered: 'tfg:rock/gravel_dripstone',      duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/mossy_cobble_dripstone',      hammered: 'tfg:rock/gravel_dripstone',      duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_dripstone',            hammered: 'tfc:sand/brown',                 duration: 70, eu: 2  },
 
-		{ raw: 'beneath:crackrack', hammered: 'tfg:rock/cobble_crackrack', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/cobble_crackrack', hammered: 'tfg:rock/gravel_crackrack', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_crackrack', hammered: 'tfc:sand/pink', duration: 70, eu: 2 },
+		{ raw: 'beneath:crackrack',                    hammered: 'tfg:rock/cobble_crackrack',      duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/cobble_crackrack',            hammered: 'tfg:rock/gravel_crackrack',      duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/mossy_cobble_crackrack',      hammered: 'tfg:rock/gravel_crackrack',      duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_crackrack',            hammered: 'tfc:sand/pink',                  duration: 70, eu: 2 },
 
-		{ raw: 'minecraft:basalt', hammered: 'tfc:rock/cobble/basalt', duration: 10, eu: 16 },
+		{ raw: 'minecraft:basalt',                     hammered: 'tfc:rock/cobble/basalt',         duration: 10, eu: 16 },
 
 		// Moon
-		{ raw: 'ad_astra:moon_stone', hammered: 'ad_astra:moon_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/hardened_moon_stone', hammered: 'ad_astra:moon_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'ad_astra:moon_cobblestone', hammered: 'tfg:rock/gravel_moon', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_moon', hammered: 'ad_astra:moon_sand', duration: 70, eu: 2 },
+		{ raw: 'ad_astra:moon_stone',                  hammered: 'ad_astra:moon_cobblestone',      duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/hardened_moon_stone',         hammered: 'ad_astra:moon_cobblestone',      duration: 10, eu: 16 },
+		{ raw: 'ad_astra:moon_cobblestone',            hammered: 'tfg:rock/gravel_moon',           duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/mossy_cobble_moon',           hammered: 'tfg:rock/gravel_moon',           duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_moon',                 hammered: 'ad_astra:moon_sand',             duration: 70, eu: 2 },
 
-		{ raw: 'ad_astra:moon_deepslate', hammered: 'tfg:rock/cobble_moon_deepslate', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/hardened_moon_deepslate', hammered: 'tfg:rock/cobble_moon_deepslate', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/cobble_moon_deepslate', hammered: 'tfg:rock/gravel_moon_deepslate', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_moon_deepslate', hammered: 'ad_astra:moon_sand', duration: 10, eu: 16 },
+		{ raw: 'ad_astra:moon_deepslate',              hammered: 'tfg:rock/cobble_moon_deepslate', duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/hardened_moon_deepslate',     hammered: 'tfg:rock/cobble_moon_deepslate', duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/cobble_moon_deepslate',       hammered: 'tfg:rock/gravel_moon_deepslate', duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/mossy_cobble_moon_deepslate', hammered: 'tfg:rock/gravel_moon_deepslate', duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_moon_deepslate',       hammered: 'ad_astra:moon_sand',             duration: 10, eu: 16 },
 
-		{ raw: 'ad_astra:glacio_stone', hammered: 'ad_astra:glacio_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/hardened_glacio_stone', hammered: 'ad_astra:glacio_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'ad_astra:glacio_cobblestone', hammered: 'tfg:rock/gravel_glacio', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_glacio', hammered: 'tfc:sand/white', duration: 70, eu: 2 },
+		{ raw: 'ad_astra:glacio_stone',                hammered: 'ad_astra:glacio_cobblestone',    duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/hardened_glacio_stone',       hammered: 'ad_astra:glacio_cobblestone',    duration: 10, eu: 16 },
+		{ raw: 'ad_astra:glacio_cobblestone',          hammered: 'tfg:rock/gravel_glacio',         duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/mossy_cobble_glacio',         hammered: 'tfg:rock/gravel_glacio',         duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_glacio',               hammered: 'tfc:sand/white',                 duration: 70, eu: 2  },
 
 		// Mars
-		{ raw: 'ad_astra:mars_stone', hammered: 'ad_astra:mars_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/hardened_mars_stone', hammered: 'ad_astra:mars_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'ad_astra:mars_cobblestone', hammered: 'tfg:rock/gravel_mars', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_mars', hammered: 'ad_astra:mars_sand', duration: 70, eu: 2 },
+		{ raw: 'ad_astra:mars_stone',                  hammered: 'ad_astra:mars_cobblestone',      duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/hardened_mars_stone',         hammered: 'ad_astra:mars_cobblestone',      duration: 10, eu: 16 },
+		{ raw: 'ad_astra:mars_cobblestone',            hammered: 'tfg:rock/gravel_mars',           duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/mossy_cobble_mars',           hammered: 'tfg:rock/gravel_mars',           duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_mars',                 hammered: 'ad_astra:mars_sand',             duration: 70, eu: 2  },
 		
-		{ raw: 'minecraft:red_sandstone', hammered: '4x minecraft:red_sand', duration: 10, eu: 16 },
+		{ raw: 'minecraft:red_sandstone',              hammered: '4x minecraft:red_sand',          duration: 10, eu: 16 },
 
-		{ raw: 'gtceu:red_granite', hammered: 'gtceu:red_granite_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/hardened_red_granite', hammered: 'gtceu:red_granite_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'gtceu:red_granite_cobblestone', hammered: 'tfg:rock/gravel_red_granite', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_red_granite', hammered: 'minecraft:red_sand', duration: 70, eu: 2 },
+		{ raw: 'gtceu:red_granite',                    hammered: 'gtceu:red_granite_cobblestone',  duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/hardened_red_granite',        hammered: 'gtceu:red_granite_cobblestone',  duration: 10, eu: 16 },
+		{ raw: 'gtceu:red_granite_cobblestone',        hammered: 'tfg:rock/gravel_red_granite',    duration: 10, eu: 16 },
+		{ raw: 'gtceu:mossy_red_granite_cobblestone',  hammered: 'tfg:rock/gravel_red_granite',    duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_red_granite',          hammered: 'minecraft:red_sand',             duration: 70, eu: 2  },
 
 		// Venus
-		{ raw: 'ad_astra:venus_stone', hammered: 'ad_astra:venus_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/hardened_venus_stone', hammered: 'ad_astra:venus_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'ad_astra:venus_cobblestone', hammered: 'tfg:rock/gravel_mars', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_mars', hammered: 'ad_astra:venus_sand', duration: 70, eu: 2 },
+		{ raw: 'ad_astra:venus_stone',                 hammered: 'ad_astra:venus_cobblestone',     duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/hardened_venus_stone',        hammered: 'ad_astra:venus_cobblestone',     duration: 10, eu: 16 },
+		{ raw: 'ad_astra:venus_cobblestone',           hammered: 'tfg:rock/gravel_venus',          duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/mossy_cobble_venus',          hammered: 'tfg:rock/gravel_venus',          duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_venus',                hammered: 'ad_astra:venus_sand',            duration: 70, eu: 2  },
 
-		{ raw: 'ad_astra:venus_sandstone', hammered: '4x ad_astra:venus_sand', duration: 70, eu: 2 },
+		{ raw: 'ad_astra:venus_sandstone',             hammered: '4x ad_astra:venus_sand',         duration: 70, eu: 2  },
 
 		// Mercury
-		{ raw: 'ad_astra:mercury_stone', hammered: 'ad_astra:mercury_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/hardened_mercury_stone', hammered: 'ad_astra:mercury_cobblestone', duration: 10, eu: 16 },
-		{ raw: 'ad_astra:mercury_cobblestone', hammered: 'tfg:rock/gravel_mars', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_mars', hammered: 'tfc:sand/red', duration: 70, eu: 2 },
+		{ raw: 'ad_astra:mercury_stone',               hammered: 'ad_astra:mercury_cobblestone',   duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/hardened_mercury_stone',      hammered: 'ad_astra:mercury_cobblestone',   duration: 10, eu: 16 },
+		{ raw: 'ad_astra:mercury_cobblestone',         hammered: 'tfg:rock/gravel_mercury',        duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/mossy_cobble_mercury',        hammered: 'tfg:rock/gravel_mercury',        duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_mercury',              hammered: 'tfc:sand/red',                   duration: 70, eu: 2  },
 
 		// Europa
-		{ raw: 'ad_astra:permafrost', hammered: 'tfg:rock/cobble_permafrost', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/cobble_permafrost', hammered: 'tfg:rock/gravel_permafrost', duration: 10, eu: 16 },
-		{ raw: 'tfg:rock/gravel_permafrost', hammered: '4x gtceu:ice_dust', duration: 70, eu: 2 },
+		{ raw: 'ad_astra:permafrost',                  hammered: 'tfg:rock/cobble_permafrost',     duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/cobble_permafrost',           hammered: 'tfg:rock/gravel_permafrost',     duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/mossy_cobble_permafrost',     hammered: 'tfg:rock/gravel_permafrost',     duration: 10, eu: 16 },
+		{ raw: 'tfg:rock/gravel_permafrost',           hammered: '4x gtceu:ice_dust',              duration: 70, eu: 2 },
 		
 		// Misc
-		{ raw: 'ad_astra:conglomerate', hammered: 'tfc:rock/gravel/conglomerate', duration: 10, eu: 16 }
+		{ raw: 'ad_astra:conglomerate',                hammered: 'tfc:rock/gravel/conglomerate',   duration: 10, eu: 16 },
 		
+		{ raw: 'minecraft:stone',                      hammered: 'minecraft:cobblestone',          duration: 10, eu: 16 }
 	]
 
 global.COOLING_FOODS = [
@@ -262,4 +297,17 @@ global.WARMING_FOODS = [
 	'tfc:food/vegetables_soup',
 	'tfc:food/protein_soup',
 	'tfc:food/dairy_soup'
+];
+
+/**
+ * @typedef {Object} LabEqupmentContainers
+ * @property {string} type - Container Type
+ * @property {number} capacity - Max Capacity in mB
+ */
+
+/** @type {LabEqupmentContainers[]} */
+global.LAB_EQUIPMENT_CONTAINERS = [
+	{type: 'beaker', capacity: 1296},
+	{type: 'flask', capacity: 144},
+	{type: 'vial', capacity: 16}
 ];

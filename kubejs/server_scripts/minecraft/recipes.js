@@ -844,15 +844,9 @@ const registerMinecraftRecipes = (event) => {
 	event.recipes.gtceu.mixer('gtceu:lv_glowstone')
 		.itemInputs('gtceu:gold_dust', 'minecraft:redstone', 'gtceu:sulfur_dust')
 		.itemOutputs('2x minecraft:glowstone_dust')
-		.circuit(32)
+		.circuit(8)
 		.duration(1200)
 		.EUt(30)
-
-	//#endregion
-
-	//#region Nether Brick
-
-	event.smelting('minecraft:nether_brick', 'minecraft:netherrack')
 
 	//#endregion
 
@@ -944,9 +938,9 @@ const registerMinecraftRecipes = (event) => {
 		'ABA',
 		'CDC'
 	], {
-		A: 'minecraft:blaze_rod',
-		B: 'minecraft:blaze_powder',
-		C: '#forge:ingots/blue_steel',
+		A: '#forge:rods/black_steel',
+		B: 'minecraft:lava_bucket',
+		C: '#minecraft:logs',
 		D: '#forge:storage_blocks/charcoal',
 	}).id('tfg:campfire_charcoal')
 
@@ -955,9 +949,9 @@ const registerMinecraftRecipes = (event) => {
 		'ABA',
 		'CDC'
 	], {
-		A: 'minecraft:blaze_rod',
-		B: 'minecraft:blaze_powder',
-		C: '#forge:ingots/blue_steel',
+		A: '#forge:rods/black_steel',
+		B: 'minecraft:lava_bucket',
+		C: '#minecraft:logs',
 		D: '#forge:storage_blocks/coal',
 	}).id('tfg:campfire_coal')
 	//#endregion
@@ -984,6 +978,8 @@ const registerMinecraftRecipes = (event) => {
 	// Slime
 	event.smelting('tfc:glue', 'minecraft:slime_ball')
 		.id('tfg:smelting/slime_to_glue')
+	event.smelting('tfc:glue', 'minecraft:magma_cream')
+		.id('tfg:smelting/magma_cream_to_glue')
 
 	// Clay
 	event.shaped('minecraft:clay', [
@@ -1128,4 +1124,13 @@ const registerMinecraftRecipes = (event) => {
 	generateGreenHouseRecipe(event, '4x minecraft:brown_mushroom', '#tfc:any_fresh_water', 4000,
 		'24x minecraft:brown_mushroom', 'brown_mushroom', 'minecraft:the_nether', 8, 
 		'4x minecraft:brown_mushroom', GTValues.VA[GTValues.LV])
+
+    // Minecart w/ Furnace
+    event.shapeless('minecraft:furnace_minecart', ['minecraft:water_bucket', 'gtceu:hp_steam_solid_boiler', 'minecraft:minecart']);
+
+    event.recipes.gtceu.assembler('minecraft:furnace_minecart')
+        .itemInputs('minecraft:water_bucket', 'gtceu:hp_steam_solid_boiler', 'minecraft:minecart')
+        .itemOutputs('minecraft:furnace_minecart')
+        .duration(100)
+        .EUt(4)
 }

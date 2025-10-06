@@ -27,6 +27,7 @@ global.GTCEU_DISABLED_ITEMS = /** @type {const} */ ([
 
     // Примитивная помпа (Primitive Pump)
     "gtceu:infinite_water_cover",
+    "gtceu:ender_item_link_cover",
     "gtceu:ender_fluid_link_cover",
     "gtceu:pump_deck",
     "gtceu:pump_hatch",
@@ -61,6 +62,9 @@ global.GTCEU_DISABLED_ITEMS = /** @type {const} */ ([
     "gtceu:tiny_netherite_dust",
     "gtceu:small_netherite_dust",
     "gtceu:netherite_dust",
+    "gtceu:blaze_bucket",
+    "gtceu:small_blaze_dust",
+    "gtceu:tiny_blaze_dust",
 
     "gtceu:treated_wood_hanging_sign",
     "gtceu:treated_wood_boat",
@@ -110,6 +114,8 @@ global.GTCEU_DISABLED_ITEMS = /** @type {const} */ ([
     "gtceu:uv_world_accelerator",
 
     "gtceu:compressed_clay",
+
+    "gtceu:stone_rod",
 
     "gtceu:damascus_steel_nugget",
     "gtceu:damascus_steel_ingot",
@@ -189,6 +195,18 @@ global.GTCEU_DISABLED_ITEMS = /** @type {const} */ ([
     "gtceu:mv_bedrock_ore_miner",
     "gtceu:hv_bedrock_ore_miner",
     "gtceu:ev_bedrock_ore_miner",
+
+    // Plutonium ores
+    "gtceu:raw_plutonium",
+    "gtceu:poor_raw_plutonium",
+    "gtceu:rich_raw_plutonium",
+    "gtceu:raw_plutonium_block",
+    "gtceu:refined_plutonium_ore",
+    "gtceu:purified_plutonium_ore",
+    "gtceu:crushed_plutonium_ore",
+    "gtceu:impure_plutonium_dust",
+    "gtceu:pure_plutonium_dust",
+    "gtceu:plutonium_surface_rock"
 ]);
 //#endregion
 
@@ -256,7 +274,7 @@ global.TFG_EXTRUDER_MOLDS = /** @type {const} */ ([
     "tfg:wire_cutter_head_extruder_mold",
     "tfg:small_casing_extruder_mold",
     "tfg:shell_casing_extruder_mold",
-    "tfg:large_casing_extruder_mold",
+    "tfg:large_casing_extruder_mold"
 ]);
 
 global.GTCEU_EXTRUDER_MOLDS = /** @type {const} */ ([
@@ -277,7 +295,7 @@ global.GTCEU_EXTRUDER_MOLDS = /** @type {const} */ ([
     "gtceu:bottle_extruder_mold",
     "gtceu:foil_extruder_mold",
     "gtceu:small_gear_extruder_mold",
-    "gtceu:rotor_extruder_mold",
+    "gtceu:rotor_extruder_mold"
 ]);
 //#endregion
 
@@ -304,6 +322,11 @@ global.GTCEU_CASTING_MOLDS = /** @type {const} */ ([
     "gtceu:small_gear_casting_mold",
     "gtceu:rotor_casting_mold",
     "gtceu:pill_casting_mold",
+    "gtceu:tiny_pipe_casting_mold",
+    "gtceu:small_pipe_casting_mold",
+    "gtceu:normal_pipe_casting_mold",
+    "gtceu:large_pipe_casting_mold",
+    "gtceu:huge_pipe_casting_mold",
 ]);
 //#endregion
 

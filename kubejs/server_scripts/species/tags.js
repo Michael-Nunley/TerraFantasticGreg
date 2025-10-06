@@ -24,4 +24,10 @@ const registerSpeciesItemTags = (event) => {
 	
 	event.add('species:goober_breed_items', '#forge:mushrooms')
 	event.add('species:cruncher_eats', '#tfc:foods/meat')
+	
+	event.add('tfc:compost_greens', 'species:alphacene_mushroom_block')
+	event.add('tfc:compost_greens_low', 'species:alphacene_mushroom_growth')
+	event.add('tfc:compost_greens', 'species:alphacene_moss_block')
+
+	event.add('minecraft:wart_blocks', 'species:alphacene_mushroom_block')
 }

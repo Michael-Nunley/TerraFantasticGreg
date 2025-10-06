@@ -24,13 +24,14 @@ const registerAdAstraRecipes = (event) => {
 	event.recipes.gtceu.assembler('tfg:rocket_nose_cone_t1')
 		.itemInputs(
 			'gtceu:hv_emitter',
-			'gtceu:dense_rocket_alloy_t1_plate',
-			'3x gtceu:double_stainless_steel_plate')
+			ChemicalHelper.get(TagPrefix.plateDense, TFGHelpers.getMaterial('rocket_alloy_t1'), 1),
+			ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.StainlessSteel, 3))
 		.inputFluids(Fluid.of('gtceu:polyethylene', 144 * 16))
 		.itemOutputs('ad_astra:rocket_nose_cone')
 		.duration(1200)
 		.circuit(2)
 		.EUt(480)
+		.addMaterialInfo(true, true)
 
 
 	event.recipes.gtceu.pyrolyse_oven('tfg:pyrolyse_vitrified_asbestos_dust')
@@ -63,50 +64,58 @@ const registerAdAstraRecipes = (event) => {
 		.EUt(120)
 
 	event.recipes.gtceu.assembler(`tfg:rocket_fin_t1`)
-		.itemInputs('#forge:plates/rocket_alloy_t1', '#forge:double_plates/stainless_steel')
+		.itemInputs(
+			ChemicalHelper.get(TagPrefix.plate, TFGHelpers.getMaterial('rocket_alloy_t1'), 1),
+			ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.StainlessSteel, 1)
+		)
 		.itemOutputs('ad_astra:rocket_fin')
 		.duration(150)
 		.circuit(2)
 		.EUt(GTValues.VA[GTValues.HV])
+		.addMaterialInfo(true)
 
 
 	event.recipes.gtceu.assembler('tfg:rocket_steel_engine')
 		.itemInputs(
-			'2x #forge:double_plates/stainless_steel',
+			ChemicalHelper.get(TagPrefix.plateDouble, GTMaterials.StainlessSteel, 2),
 			'2x #gtceu:circuits/hv',
 			'gtceu:hv_electric_pump',
 			'2x gtceu:power_thruster',
-			'#forge:rotors/stainless_steel')
+			ChemicalHelper.get(TagPrefix.rotor, GTMaterials.StainlessSteel, 1)
+		)
 		.inputFluids(Fluid.of('gtceu:blue_steel', 144 * 8))
 		.itemOutputs('ad_astra:steel_engine')
 		.duration(600)
 		.circuit(2)
 		.EUt(GTValues.VA[GTValues.HV])
+		.addMaterialInfo(true, true)
 
 	event.recipes.gtceu.assembler('ad_astra:assembler_tier_1_rocket')
 		.itemInputs(
-			'8x #forge:dense_plates/rocket_alloy_t1',
+			ChemicalHelper.get(TagPrefix.plateDense, TFGHelpers.getMaterial('rocket_alloy_t1'), 8),
 			'4x ad_astra:rocket_fin',
 			'1x ad_astra:steel_engine',
 			'1x ad_astra:rocket_nose_cone',
-			'16x #forge:insulation_t1'
+			'16x #forge:insulation_t1',
+			'4x #gtceu:circuits/hv'
 		)
 		.inputFluids(Fluid.of('gtceu:silicon', 144 * 16))
 		.itemOutputs('ad_astra:tier_1_rocket')
 		.duration(1200)
 		.circuit(2)
 		.EUt(GTValues.VA[GTValues.HV])
+		.addMaterialInfo(true, true)
 
 	//#endregion
 
 
-	//region tier 2 rocket DISABLED UNTIL EV
+	//region tier 2 rocket
 	
 	event.remove({ mod: 'gtceu', input: 'gtceu:hot_rocket_alloy_t2_ingot' })
-/*
+
 	event.recipes.gtceu.mixer('tfg:rocket_alloy_t2')
 		.itemInputs('19x #forge:dusts/titanium', '3x #forge:small_dusts/chromium', '3x #forge:small_dusts/tin', '3x #forge:small_dusts/aluminium')
-		.inputFluids(Fluid.of('gtceu:vanadium', 540))
+		.inputFluids(Fluid.of('gtceu:vanadium', 144 * 4))
 		.itemOutputs('25x #forge:dusts/rocket_alloy_t2')
 		.duration(580)
 		.circuit(5)
@@ -134,12 +143,13 @@ const registerAdAstraRecipes = (event) => {
 		.duration(1440)
 		.circuit(3)
 		.EUt(GTValues.VA[GTValues.EV])
+		.addMaterialInfo(true)
 
 	
 	event.recipes.gtceu.assembler('tfg:rocket_desh_engine')
 		.itemInputs(
 			'4x #forge:double_plates/titanium',
-			'4x #gtceu:circuits/ev',
+			'2x #gtceu:circuits/ev',
 			'gtceu:ev_electric_pump',
 			'3x gtceu:advanced_power_thruster',
 			'4x #forge:rods/magnetic_neodymium',
@@ -156,14 +166,15 @@ const registerAdAstraRecipes = (event) => {
 			'4x tfg:rocket_fin_t2',
 			'1x ad_astra:desh_engine',
 			'1x tfg:rocket_cone_t2',
-			'12x #forge:insulation_t2/roll'
+			'12x #forge:insulation_t2/roll',
+			'4x #gtceu:circuits/ev'
 		)
-		.inputFluids(Fluid.of('tfg:cryogenized_fluix', 144 * 2 * 16))
+		.inputFluids(Fluid.of('gtceu:titanium', 144 * 16))
 		.itemOutputs('ad_astra:tier_2_rocket')
 		.duration(1440)
 		.circuit(3)
 		.EUt(GTValues.VA[GTValues.EV])
-*/
+
 	//#endregion
 
 	//region Tier 3 DISABLED UNTIL IV
@@ -289,7 +300,8 @@ const registerAdAstraRecipes = (event) => {
 	event.recipes.gtceu.assembler('ad_astra:netherite_space_helmet')
 		.itemInputs(
 			'ad_astra:space_helmet',
-			'3x #forge:plates/tungsten_steel',
+			'2x #forge:plates/tungsten_steel',
+			'1x #forge:plates/ostrum',
 			'3x tfg:better_space_suit_fabric',
 			'5x gtceu:laminated_glass'
 		)
@@ -310,7 +322,12 @@ const registerAdAstraRecipes = (event) => {
 		.id('tfg:empty_space_suit')
 
 	event.recipes.gtceu.assembler('ad_astra:netherite_space_suit')
-		.itemInputs('ad_astra:space_suit', '5x #forge:plates/tungsten_steel','5x tfg:better_space_suit_fabric')
+		.itemInputs(
+			'ad_astra:space_suit',
+			'3x #forge:plates/tungsten_steel',
+			'2x #forge:plates/ostrum',
+			'5x tfg:better_space_suit_fabric'
+		)
 		.itemOutputs('ad_astra:netherite_space_suit')
 		.duration(400)
 		.EUt(GTValues.VA[GTValues.IV])
@@ -328,7 +345,12 @@ const registerAdAstraRecipes = (event) => {
 	}).id('tfg:space_pants')
 
 	event.recipes.gtceu.assembler('ad_astra:netherite_space_pants')
-		.itemInputs('ad_astra:space_pants', '4x #forge:plates/tungsten_steel', '4x tfg:better_space_suit_fabric')
+		.itemInputs(
+			'ad_astra:space_pants', 
+			'2x #forge:plates/tungsten_steel', 
+			'2x #forge:plates/ostrum',
+			'4x tfg:better_space_suit_fabric'
+		)
 		.itemOutputs('ad_astra:netherite_space_pants')
 		.duration(400)
 		.EUt(GTValues.VA[GTValues.IV])
@@ -342,7 +364,12 @@ const registerAdAstraRecipes = (event) => {
 	}).id('tfg:space_boots')
 
 	event.recipes.gtceu.assembler('ad_astra:netherite_space_boots')
-		.itemInputs('ad_astra:space_boots', '2x #forge:plates/tungsten_steel', '2x tfg:better_space_suit_fabric')
+		.itemInputs(
+			'ad_astra:space_boots', 
+			'1x #forge:plates/tungsten_steel', 
+			'1x #forge:plates/ostrum',
+			'2x tfg:better_space_suit_fabric'
+		)
 		.itemOutputs('ad_astra:netherite_space_boots')
 		.duration(400)
 		.EUt(GTValues.VA[GTValues.IV])
@@ -845,6 +872,28 @@ const registerAdAstraRecipes = (event) => {
 	event.stonecutting('ad_astra:etrium_factory_block', '#tfg:ad_astra_etrium_blocks')
 	event.stonecutting('ad_astra:encased_etrium_block', '#tfg:ad_astra_etrium_blocks')
 	event.stonecutting('ad_astra:etrium_plateblock', '#tfg:ad_astra_etrium_blocks')
+
+	event.recipes.tfc.loom(
+		'8x ad_astra:glacian_fur',
+		'8x tfg:glacian_wool',
+		8,
+		'ad_astra:block/glacian_fur'
+	)
+
+	event.recipes.gtceu.assembler('tfg:assembler/glacian_fur')
+		.itemInputs('8x tfg:glacian_wool')
+		.circuit(10)
+		.itemOutputs('8x ad_astra:glacian_fur')
+		.duration(100)
+		.EUt(4)
+
+	event.shaped('minecraft:pink_bed', [
+		'AAA',
+		'BBB'
+	], {
+		A: 'ad_astra:glacian_wool',
+		B: '#tfc:lumber'
+	}).id('tfg:shaped/glacian_bed')
 
 	//#endregion
 

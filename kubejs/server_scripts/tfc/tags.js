@@ -6,6 +6,7 @@ function registerTFCItemTags(event) {
     // Теги для соответствия инструментов TFC и GT
 
     forEachMaterial((material) => {
+        // Tool rack tags
         if (material.hasProperty(PropertyKey.TOOL)) {
             for (let [key, value] of Object.entries(global.GTCEU_TOOLTYPES_WHICH_HAS_TFC_DUPS)) {
                 let tool = ToolHelper.get(value, material);
@@ -325,6 +326,7 @@ function registerTFCItemTags(event) {
     event.add("tfc:forge_invisible_whitelist", "greate:titanium_mechanical_pump");
 
     event.add("forge:mushrooms", "tfc:plant/artists_conk");
+    event.add("forge:raw_materials/sylvite", "tfc:ore/sylvite");
 
     global.TFC_STONE_TYPES.forEach((stone) => {
         event.add("minecraft:stone_buttons", `tfc:rock/button/${stone}`);
@@ -338,8 +340,8 @@ function registerTFCItemTags(event) {
         event.add("tfc:wet_mud_bricks", wetMudBrick);
     });
 
-    global.TFC_MUD_BRICKS.forEach((mudBrick) => {
-        event.add("tfc:mud_bricks", mudBrick);
+    global.TFC_DRY_MUD_BRICKS.forEach((dryMudBrick) => {
+        event.add("tfc:dry_mud_bricks", dryMudBrick);
     });
 }
 
@@ -409,12 +411,6 @@ function registerTFCBlockTags(event) {
     // Удаление тегов у руд
     event.removeAllTagsFrom("/tfc:ore/[^*]+/[^*]+/");
 
-    //#region Позволяем ТФК магме греть бойлер из Create
-    global.TFC_MAGMA_BLOCKS.forEach((el) => {
-        event.add("create:passive_boiler_heaters", el);
-    });
-    //#endregion
-
     //#region Nether
 
     event.add("beneath:nether_bush_plantable_on", "#tfc:clay_grass");
@@ -466,6 +462,8 @@ function registerTFCBlockTags(event) {
         event.add("minecraft:stone_buttons", `tfc:rock/button/${stone}`);
         event.add("minecraft:buttons", `tfc:rock/button/${stone}`);
     });
+
+    event.add('tfc:can_be_snow_piled', 'tfc:groundcover/feather');
 }
 
 /** @param {TagEvent.Fluid} event */
@@ -534,26 +532,58 @@ function registerTFCFluidTags(event) {
     event.add("tfc:usable_in_tool_head_mold", "gtceu:black_bronze");
     event.add("tfc:usable_in_tool_head_mold", "gtceu:bronze");
 
-    event.add("tfc:usable_in_barrel", "gtceu:creosote");
-    event.add("tfc:usable_in_wooden_bucket", "gtceu:creosote");
-    event.add("tfc:usable_in_red_steel_bucket", "gtceu:creosote");
-    event.add("tfc:usable_in_blue_steel_bucket", "gtceu:creosote");
+    const $FluidState = Java.loadClass("com.gregtechceu.gtceu.api.fluids.FluidState")
+    const $FluidAttribute = Java.loadClass("com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes")
 
-    event.add("tfc:usable_in_barrel", "gtceu:ice");
+    forEachMaterial(material => {
+        if (material.hasProperty(PropertyKey.FLUID)) {
+            let fluid = material.getFluid();
+
+            // Ignore gases
+            let fluidType = fluid.getFluidType();
+            if (fluidType.isLighterThanAir())
+                return;
+
+            // Check for acids
+            try {
+                // This is in a try catch because I don't know how to check if an object is of type 
+                // AttributedFluid or GTFluid here
+                if (fluid.getAttributes().contains($FluidAttribute.ACID))
+                    return;
+            }
+            catch (exception) {
+                return;
+            }
+
+            // Check for plasmas (and gases again in case the previous check didn't work)
+            let fluidState = fluid.getState();
+            if (fluidState === $FluidState.PLASMA || fluidState === $FluidState.GAS)
+                return;
+
+            let fluidName = fluidType.toString();
+            let temperature = fluidType.getTemperature();
+
+            // 340 is the max temperature of wood pipes
+            // 120 is the cryogenic temperature threshold (see gtceu/FluidConstants)
+            if (temperature <= 340 && temperature >= 120) {
+                event.add("tfc:usable_in_barrel", fluidName);
+                event.add("tfc:usable_in_wooden_bucket", fluidName);
+            }
+
+            // Red steel's max temperature, can do cryo
+            if (temperature <= 370) {
+                event.add("tfc:usable_in_red_steel_bucket", fluidName);
+            }
+
+            // Blue steel's max temp, can't do cryo
+            if (temperature <= 4618 && temperature >= 120) {
+                event.add("tfc:usable_in_blue_steel_bucket", fluidName);
+            }
+        }
+    })
+
     event.add("tfc:usable_in_pot", "gtceu:ice");
-    event.add("tfc:usable_in_wooden_bucket", "gtceu:ice");
-    event.add("tfc:usable_in_red_steel_bucket", "gtceu:ice");
-
-    event.add("tfc:usable_in_barrel", "gtceu:glue");
-    event.add("tfc:usable_in_wooden_bucket", "gtceu:glue");
-    event.add("tfc:usable_in_blue_steel_bucket", "tfc:spring_water");
-    event.add("tfc:usable_in_red_steel_bucket", "gtceu:glue");
-
     event.add("tfc:ingredients", "tfc:spring_water");
-    event.add("tfc:usable_in_barrel", "tfc:spring_water");
-    event.add("tfc:usable_in_wooden_bucket", "tfc:spring_water");
-    event.add("tfc:usable_in_blue_steel_bucket", "tfc:spring_water");
-    event.add("tfc:usable_in_red_steel_bucket", "tfc:spring_water");
 
     event.add("tfc:alcohols", "tfcagedalcohol:aged_beer");
     event.add("tfc:alcohols", "tfcagedalcohol:aged_cider");
@@ -593,6 +623,10 @@ function registerTFCFluidTags(event) {
 /** @param {TagEvent.Biome} event */
 function registerTFCBiomeTags(event) {
     event.add("tfc:kaolin_clay_spawns_in", "tfc:rolling_hills");
+
+    global.TFC_BIOMES.forEach(biome => {
+        event.add('tfg:overworld_biomes', biome);
+    })
 }
 
 /** @param {TagEvent.PlacedFeature} event */
